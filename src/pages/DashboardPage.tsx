@@ -68,6 +68,7 @@ export default function Dashboard() {
     setStageData(Object.keys(stageMap).map(stage => ({ stage, count: stageMap[stage] })));
   } catch (err) {
     console.error("Failed to fetch totals:", err);
+    alert("Refresh/ Reload site");
   } finally {
     setLoading(false);
   }
