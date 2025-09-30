@@ -29,61 +29,35 @@ export default function JobListPage() {
   const [statusFilter, setStatusFilter] = useState('');
   const [tagsFilter, setTagsFilter] = useState('');
   const [sortField, setSortField] = useState('order'); 
-  useEffect(() => {
+ 
+ useEffect(() => {
     loadJobs();
 }, []);
-
   // helper: safe JSON parser
-async function safeJson(res: Response) {
-  const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    console.error("Non-JSON response (first 200 chars):", text.slice(0, 200));
-    alert("Refresh/ Reload site");
-    window.location.reload();
-    return null;
-  }
-}
-
 const loadJobs = async () => {
-  try {
-    const params = new URLSearchParams();
-    params.append("page", page.toString());
-    params.append("pageSize", "5");
-    if (search) params.append("search", search);
-    if (statusFilter) params.append("status", statusFilter);
-    if (tagsFilter) params.append("tags", tagsFilter);
-    if (sortField) params.append("sort", sortField);
+    try {
+      const params = new URLSearchParams();
+      params.append('page', page.toString());
+      params.append('pageSize', '5');
+      if (search) params.append('search', search);
+      if (statusFilter) params.append('status', statusFilter);
+      if (tagsFilter) params.append('tags', tagsFilter);
+      if (sortField) params.append('sort', sortField);
 
-    // first request
-    const pageRes = await fetch(`/api/jobs?${params.toString()}`);
-    const pageData = await safeJson(pageRes);
-
-    if (pageData && pageData.data) {
+      const pageRes = await fetch(`/api/jobs?${params.toString()}`);
+      const pageData = await pageRes.json();
       setJobs(pageData.data);
       setTotalPages(Math.ceil(pageData.total / 5));
-    } else {
-      setJobs([]);
-      setTotalPages(1);
-    }
 
-    // second request (all jobs)
-    const allRes = await fetch(`/api/jobs?page=1&pageSize=1000&sort=${sortField}`);
-    const allData = await safeJson(allRes);
-
-    if (allData && allData.data) {
+      const allRes = await fetch(`/api/jobs?page=1&pageSize=1000&sort=${sortField}`);
+      const allData = await allRes.json();
       setAllJobs(allData.data);
-    } else {
-      setAllJobs([]);
+    } catch (error) {
+      alert('Failed to load jobs:', error);
+      setJobs([]);  
+        setAllJobs([]);
     }
-  } catch (error) {
-    console.error("Failed to load jobs:", error);
-    setJobs([]);
-    setAllJobs([]);
-    setTotalPages(1);
-  }
-};
+  };
 
 
   useEffect(() => {
