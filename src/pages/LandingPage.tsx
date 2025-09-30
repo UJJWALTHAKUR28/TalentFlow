@@ -153,7 +153,7 @@ function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-4xl font-bold text-[#00241B] mb-6">
-                Why Choose HireFlow?
+                Why Choose TalentFlow?
               </h3>
               <div className="space-y-4">
                 {[
@@ -179,7 +179,7 @@ function LandingPage() {
                   <span className="text-sm text-gray-600 ml-2">5.0 rating</span>
                 </div>
                 <p className="text-gray-700 mb-4">
-                  "HireFlow transformed our hiring process. We've reduced our time-to-hire by 50% 
+                  "TalentFlow transformed our hiring process. We've reduced our time-to-hire by 50% 
                   and significantly improved candidate quality."
                 </p>
                 <div className="flex items-center space-x-3">
