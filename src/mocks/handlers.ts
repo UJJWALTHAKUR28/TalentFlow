@@ -18,6 +18,17 @@ function generateUniqueSlug(title: string, id: number): string {
 }
 
 
+async function simulateLatencyAndErrors(minLatency = 200, maxLatency = 1200, minErrorRate = 0.05, maxErrorRate = 0.1) {
+ 
+  const latency = Math.random() * (maxLatency - minLatency) + minLatency;
+  await new Promise((resolve) => setTimeout(resolve, latency));
+
+  const errorRate = Math.random() * (maxErrorRate - minErrorRate) + minErrorRate;
+  if (Math.random() < errorRate) {
+    throw new HttpResponse('Injected Server Error', { status: 500 });
+  }
+}
+
 const RESPONSE_STORAGE_KEY = "localAssessmentResponses";
 
 function loadResponses() {
