@@ -57,6 +57,7 @@ export default function CandidateListPage() {
       setTotalCount(data.total || 0);
     } catch (error) {
       console.error('Failed to load candidates:', error);
+      alert("Refresh/ Reload site");
       setCandidates([]);
       setTotalCount(0);
     } finally {
