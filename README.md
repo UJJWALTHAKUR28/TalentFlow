@@ -254,7 +254,7 @@ Response: Formatted response array with question-answer pairs
 - **Kanban Board**: Visual stage progression with drag-drop functionality
 - **Advanced Search**: Real-time search by name/email with debouncing
 - **Profile Timeline**: Complete candidate journey visualization
-- **Stage Transitions**: Automatic timeline tracking for status changes
+- **Stage Transitions**: Automatic timeline tracking for status changes/Timeline
 
 ### Assessment System
 - **Visual Builder**: Drag-drop question creation with live preview
@@ -264,7 +264,7 @@ Response: Formatted response array with question-answer pairs
   - Numeric with range validation
   - File upload placeholders
 - **Conditional Logic**: Show/hide questions based on previous answers
-- **Form Runtime**: Complete validation with error handling
+- **Respone/Start Assessment**: Complete Assessment like attempt with individual candiate and job.
 - **Response Management**: View and manage candidate submissions
 
 ### Dashboard Analytics
@@ -322,22 +322,20 @@ http.post('/api/jobs', async ({ request }) => {
 ### Network Simulation
 ```typescript
 // Artificial latency and error rates in MSW handlers
-const simulateNetworkDelay = () => 
-  new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 1000));
+async function simulateLatencyAndErrors(minLatency = 200, maxLatency = 1200, minErrorRate = 0.05, maxErrorRate = 0.1) {
+ 
+  const latency = Math.random() * (maxLatency - minLatency) + minLatency;
+  await new Promise((resolve) => setTimeout(resolve, latency));
 
-// 10% error rate on write operations
-const shouldSimulateError = () => Math.random() < 0.1;
-
-// Graceful error handling in components
-try {
-  const response = await fetch('/api/jobs', { ... });
-  if (!response.ok) throw new Error('Network error');
-} catch (error) {
-  setError('Failed to load jobs. Please try again.');
-  // Fallback to cached data from IndexedDB
+  const errorRate = Math.random() * (maxErrorRate - minErrorRate) + minErrorRate;
+  if (Math.random() < errorRate) {
+    throw new HttpResponse('Injected Server Error', { status: 500 });
+  }
 }
 ```
-
+just add this to simulate error in handler
+add this is in inject in handler specific route
+```await simulateLatencyAndErrors(200, 1200, 0.05, 0.1);```
 ### Optimistic Updates with Rollback
 ```typescript
 // Immediate UI feedback with server reconciliation
