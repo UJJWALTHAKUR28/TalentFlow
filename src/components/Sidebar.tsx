@@ -68,7 +68,7 @@ export default function Sidebar() {
         </div>
 
 
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 p-4 space-y-2 ">
           {navItems.map(({ to, label, icon: Icon }) => {
             const isActive = location.pathname === to || location.pathname.startsWith(to + '/');
             return (
