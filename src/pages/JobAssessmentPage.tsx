@@ -16,7 +16,10 @@ const JobAssessmentPage: React.FC = () => {
     fetch("/api/jobs?page=1&pageSize=100")
       .then((res) => res.json())
       .then((data) => setJobs(data.data || []))
-      .catch((err) => console.error("Failed to load jobs:", err));
+      .catch((err) =>  {
+      console.error("Failed to load jobs:", err);
+      alert(`Reload Page`);
+    });
   }, []);
 
   const filteredJobs = jobs.filter((job) =>
