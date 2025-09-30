@@ -40,6 +40,7 @@ async function safeJson(res: Response) {
     return JSON.parse(text);
   } catch {
     console.error("Non-JSON response (first 200 chars):", text.slice(0, 200));
+    window.location.reload();
     return null;
   }
 }
