@@ -14,7 +14,6 @@ export default function JobForm({ job, onClose, onSaved }: JobFormProps) {
   const [tagInput, setTagInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Common tag suggestions
   const suggestedTags = [
     'frontend', 'backend', 'fullstack', 'react', 'angular', 'vue', 'nodejs', 'python', 
     'javascript', 'typescript', 'java', 'php', 'ruby', 'go', 'rust', 'swift',
@@ -126,7 +125,7 @@ export default function JobForm({ job, onClose, onSaved }: JobFormProps) {
               Tags
             </label>
             
-            {/* Selected Tags */}
+
             <div className="flex flex-wrap gap-2 mb-3">
               {tags.map((tag, index) => (
                 <span
@@ -162,7 +161,7 @@ export default function JobForm({ job, onClose, onSaved }: JobFormProps) {
                 placeholder="Type to add tags or select from suggestions..."
               />
 
-              {/* Tag Suggestions */}
+
               {showSuggestions && filteredSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-48 overflow-y-auto">
                   {filteredSuggestions.slice(0, 8).map((suggestion, index) => (
@@ -178,7 +177,6 @@ export default function JobForm({ job, onClose, onSaved }: JobFormProps) {
               )}
             </div>
 
-            {/* Popular Tags Quick Add */}
             <div className="mt-3">
               <p className="text-xs text-gray-500 mb-2">Popular tags:</p>
               <div className="flex flex-wrap gap-2">

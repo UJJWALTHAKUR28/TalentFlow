@@ -15,7 +15,7 @@ export class JobsDB extends Dexie {
   constructor() {
     super('jobsDb');
     this.version(1).stores({
-      jobs: '++id, slug, status, order', // indexes
+      jobs: '++id, slug, status, order', 
     });
   }
 }

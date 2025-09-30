@@ -38,7 +38,7 @@ export default function CandidateListPage() {
   const [loading, setLoading] = useState(false);
   const jobId = selectedJobId || Number(searchParams.get('jobId') || 0);
 
-  // Load jobs for dropdown
+
   useEffect(() => {
     fetch("/api/jobs?page=1&pageSize=100")
       .then(res => res.json())
@@ -66,15 +66,15 @@ export default function CandidateListPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPage(1); // Reset to first page when search changes
+      setPage(1); 
       loadCandidates();
     }, search ? 300 : 0);
     return () => clearTimeout(timer);
-  }, [search, stage, pageSize, jobId]); // Added jobId dependency
+  }, [search, stage, pageSize, jobId]); 
 
   useEffect(() => {
     loadCandidates();
-  }, [page, jobId]); // Added jobId dependency
+  }, [page, jobId]); 
 
   const totalPages = Math.ceil(totalCount / pageSize);
   const startItem = (page - 1) * pageSize + 1;
@@ -92,10 +92,10 @@ export default function CandidateListPage() {
           <p className="text-gray-600">Manage and review candidate applications</p>
         </div>
 
-        {/* Filters */}
+     
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col lg:flex-row gap-4">
-            {/* Job Filter Dropdown */}
+       
             <div className="lg:w-64">
               <div className="relative">
                 <select
@@ -113,7 +113,7 @@ export default function CandidateListPage() {
               </div>
             </div>
 
-            {/* Search Bar */}
+        
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -127,7 +127,7 @@ export default function CandidateListPage() {
               </div>
             </div>
 
-            {/* Stage Filter */}
+    
             <div className="lg:w-64">
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -147,7 +147,7 @@ export default function CandidateListPage() {
               </div>
             </div>
 
-            {/* Page Size */}
+         
             <div className="lg:w-32">
               <select
                 value={pageSize}
@@ -162,8 +162,7 @@ export default function CandidateListPage() {
           </div>
         </div>
 
-        {/* Rest of your UI stays unchanged */}
-        {/* Results Info */}
+   
         <div className="flex justify-between items-center mb-6">
           <div className="text-sm text-gray-700">
             {totalCount > 0 ? (
@@ -180,7 +179,7 @@ export default function CandidateListPage() {
           )}
         </div>
 
-        {/* Candidate List */}
+      
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           {candidates.length === 0 ? (
             <div className="text-center py-12">
@@ -233,7 +232,7 @@ export default function CandidateListPage() {
           )}
         </div>
 
-        {/* Pagination */}
+  
         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-6">
             <div className="flex-1 flex justify-between sm:hidden">

@@ -139,16 +139,16 @@ const AssessmentBuilderPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto p-6">
-        {/* Header */}
+
         <div className="bg-[#00241B]/80 rounded-xl shadow-sm border border-gray-200 p-8 mb-8 text-center">
           <h1 className="text-4xl font-bold text-[#B5FFE1] mb-2">Assessment Builder</h1>
           <p className="text-[#93E5AB]">Create comprehensive assessments for job positions</p>
         </div>
       
-        {/* Main Form */}
+
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Job Selector */}
+         
             <div className="space-y-3">
               <label className="block text-sm font-semibold text-gray-900">
                 Select Job Position <span className="text-red-500">*</span>
@@ -167,7 +167,7 @@ const AssessmentBuilderPage: React.FC = () => {
               </select>
             </div>
 
-            {/* Assessment Title */}
+      
             <div className="space-y-3">
               <label className="block text-sm font-semibold text-gray-900">
                 Assessment Title <span className="text-red-500">*</span>
@@ -182,7 +182,7 @@ const AssessmentBuilderPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Description */}
+ 
           <div className="mt-8 space-y-3">
             <label className="block text-sm font-semibold text-gray-900">
               Description
@@ -197,11 +197,11 @@ const AssessmentBuilderPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Sections */}
+ 
         <div className="space-y-6 mb-8">
           {sections.map((section, sectionIndex) => (
             <div key={section.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-              {/* Section Header */}
+      
               <div className="bg-[#4E878C] px-6 py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 mr-4">
@@ -222,12 +222,12 @@ const AssessmentBuilderPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Questions */}
+          
               <div className="p-6 space-y-6">
                 {section.questions.map((q, qIndex) => (
                   <div key={q.id} className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                     <div className="space-y-6">
-                      {/* Question Text */}
+                   
                       <div>
                         <p className="text-sm mb-2 text-gray-500">
         Question ID: {q.id}  
@@ -244,7 +244,7 @@ const AssessmentBuilderPage: React.FC = () => {
                         />
                       </div>
 
-                      {/* Question Type & Settings */}
+                    
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -282,7 +282,7 @@ const AssessmentBuilderPage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Numeric Range */}
+               
                       {q.type === "numeric" && (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div>
@@ -334,7 +334,7 @@ const AssessmentBuilderPage: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Max Length for text fields */}
+           
                       {(q.type === "short-text" || q.type === "long-text") && (
                         <div className="w-full md:w-1/3">
                           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -350,7 +350,7 @@ const AssessmentBuilderPage: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Options */}
+                 
                       {(q.type === "single-choice" || q.type === "multi-choice") && (
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -389,7 +389,6 @@ const AssessmentBuilderPage: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Conditional Logic */}
                       <div className="border-t border-gray-200 pt-6">
                         <div className="flex items-center justify-between mb-4">
                           <label className="block text-sm font-medium text-gray-700">
@@ -459,7 +458,7 @@ const AssessmentBuilderPage: React.FC = () => {
                         )}
                       </div>
 
-                      {/* Remove Question Button */}
+                 
                       <div className="flex justify-end pt-4 border-t border-gray-200">
                         <button 
                           className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors" 
@@ -473,7 +472,7 @@ const AssessmentBuilderPage: React.FC = () => {
                   </div>
                 ))}
 
-                {/* Add Question Button */}
+         
                 <div className="flex justify-center pt-4">
                   <button 
                     className="flex items-center space-x-2 px-6 py-3 bg-[#4E878C] text-white rounded-lg hover:bg-[#4E878C]/70 transition-colors" 
@@ -488,7 +487,7 @@ const AssessmentBuilderPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Action Buttons */}
+       
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
             <button 

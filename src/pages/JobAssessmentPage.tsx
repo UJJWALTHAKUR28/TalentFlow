@@ -29,7 +29,7 @@ const JobAssessmentPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
+   
       <div className="bg-[#00241B]/80 text-[#B5FFE1] shadow-sm rounded-2xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
@@ -44,13 +44,13 @@ const JobAssessmentPage: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Search and Job Selection Section */}
+
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 mb-8 overflow-hidden">
-          {/* Search Header */}
+         
           <div className="bg-[#4E878C] text-white px-8 py-6">
             <h2 className="text-2xl font-bold mb-4 text-center">Select Job Position</h2>
             
-            {/* Search Bar */}
+          
             <div className="max-w-2xl mx-auto">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -69,7 +69,7 @@ const JobAssessmentPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Job Results Grid */}
+  
           <div className="p-9">
             {filteredJobs.length === 0 ? (
               <div className="text-center py-16">
@@ -130,7 +130,7 @@ const JobAssessmentPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Assessment Details Section */}
+   
         {selectedJob && (
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
             <div className="bg-[#4E878C] text-white px-8 py-8">
@@ -158,7 +158,7 @@ const JobAssessmentPage: React.FC = () => {
           </div>
         )}
 
-        {/* Empty State for No Selection */}
+      
         {!selectedJob && (
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
             <div className="text-center py-20 px-8">
@@ -181,7 +181,6 @@ const JobAssessmentPage: React.FC = () => {
   );
 };
 
-// Use AssessmentDetailPage directly with jobId prop
 const AssessmentDetailForJob: React.FC<{ jobId: number }> = ({ jobId }) => {
   return <AssessmentDetailPage jobId={jobId} />;
 };

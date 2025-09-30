@@ -10,7 +10,6 @@ export default function Layout() {
 
       <Sidebar />
 
-      {/* Main content area */}
       <div className="flex flex-col flex-1">
         <div className="flex-1 overflow-y-auto p-4">
           <Outlet /> 

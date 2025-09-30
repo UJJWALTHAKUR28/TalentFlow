@@ -8,21 +8,21 @@ import { Link } from 'react-router-dom';
 interface Candidate {
   id: number;
   jobId: number;
-  jobName?: string; // NEW: Added jobName
+  jobName?: string;
   name: string;
   email: string;
   phone?: string;
   location?: string;
   notes?: string[];
   stage: 'applied' | 'screen' | 'tech' | 'offer' | 'hired' | 'rejected';
-  appliedDate?: string;        // legacy support
-  dateApplied?: string;        // 📅 when they applied
-  experience?: string;         // textual (e.g., "Senior Dev")
-  experienceYears?: number;    // ⏳ numeric years of experience
+  appliedDate?: string;       
+  dateApplied?: string;        
+  experience?: string;         
+  experienceYears?: number;  
   skills?: string[];
   resumeUrl?: string;
-  linkedin?: string;           // 🔗 LinkedIn profile
-  portfolio?: string;          // 🎨 GitHub/Portfolio link
+  linkedin?: string;          
+  portfolio?: string;         
   timeline?: TimelineEvent[];
 }
 
@@ -226,7 +226,7 @@ export default function CandidateProfilePage() {
         </div>
       </div>
 
-      {/* Tabs */}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="border-b border-gray-200 mb-8">
           <nav className="-mb-px flex space-x-8">
@@ -254,7 +254,7 @@ export default function CandidateProfilePage() {
           </nav>
         </div>
 
-        {/* Tab Content */}
+
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">

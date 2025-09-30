@@ -53,7 +53,7 @@ function randomLocation(): string {
 
 function randomSkills(): string[] {
   const shuffled = [...SKILLS].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, Math.floor(Math.random() * 4) + 2); // 2–5 skills
+  return shuffled.slice(0, Math.floor(Math.random() * 4) + 2); 
 }
 
 export async function clearDatabases() {
@@ -85,8 +85,8 @@ export async function seedCandidates(count: number = 1000) {
       linkedin: `https://linkedin.com/in/${name.replace(/\s/g, '').toLowerCase()}`,
       portfolio: `https://github.com/${name.split(' ')[0].toLowerCase()}`,
       stage,
-      dateApplied: new Date(Date.now() - Math.floor(Math.random() * 30) * 86400000).toISOString(), // within last 30 days
-      experienceYears: Math.floor(Math.random() * 10), // 0–9 years
+      dateApplied: new Date(Date.now() - Math.floor(Math.random() * 30) * 86400000).toISOString(), 
+      experienceYears: Math.floor(Math.random() * 10), 
       skills: randomSkills(),
       notes: [],
       timeline: [{ stage: 'applied', date: new Date().toISOString() }]

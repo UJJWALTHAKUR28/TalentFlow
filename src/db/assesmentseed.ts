@@ -3,7 +3,7 @@ import { db } from './talenshowDb';
 import type { Assessment } from './assessmentsDb';
 import { v4 as uuidv4 } from 'uuid';
 
-// Assessment templates for each job type
+
 const ASSESSMENT_TEMPLATES: Record<string, { title: string; description: string; sections: any[] }[]> = {
   'Frontend Engineer': [
     {
@@ -1341,7 +1341,7 @@ const ASSESSMENT_TEMPLATES: Record<string, { title: string; description: string;
   ]
 };
 
-// Generate a generic assessment template for job titles not in the above list
+
 function generateGenericAssessments(jobTitle: string): { title: string; description: string; sections: any[] }[] {
   return [
     {
@@ -1679,14 +1679,13 @@ function generateGenericAssessments(jobTitle: string): { title: string; descript
 }
 
 export async function seedAssessments() {
-  // Check if assessments already exist
+
   const count = await assessmentsDb.assessments.count();
   if (count > 0) {
     console.log('Assessments already seeded. Skipping...');
     return;
   }
 
-  // Get all jobs from the database
   const jobs = await db.jobs.toArray();
   if (jobs.length === 0) {
     console.log('No jobs found. Please seed jobs first.');
@@ -1697,18 +1696,17 @@ export async function seedAssessments() {
   const now = new Date().toISOString();
 
   for (const job of jobs) {
-    // Get templates for this job title or use generic ones
+
     const templates = ASSESSMENT_TEMPLATES[job.title] || generateGenericAssessments(job.title);
 
-    // Create 3 assessments for each job
     templates.forEach((template, index) => {
       assessmentsToCreate.push({
         jobId: job.id!,
         title: template.title,
         description: template.description,
         sections: template.sections,
-        timeLimit: 45 + (index * 15), // 45, 60, 75 minutes
-        passingScore: 60 + (index * 5), // 60%, 65%, 70%
+        timeLimit: 45 + (index * 15), 
+        passingScore: 60 + (index * 5), 
         isActive: true,
         createdAt: now,
         updatedAt: now
@@ -1716,7 +1714,7 @@ export async function seedAssessments() {
     });
   }
 
-  // Bulk insert all assessments
+ 
   await assessmentsDb.assessments.bulkAdd(assessmentsToCreate);
   console.log(`Seeded ${assessmentsToCreate.length} assessments for ${jobs.length} jobs`);
 }
@@ -1728,7 +1726,7 @@ export async function clearAssessmentsDB() {
   ]);
 }
 
-// Initialize assessments on app load
+
 export async function initializeAssessments() {
   try {
  

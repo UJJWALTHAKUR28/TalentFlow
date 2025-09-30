@@ -8,7 +8,7 @@ export default function CandidateKanbanPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      {/* Back button */}
+  
       <div className="mb-4">
         <Link
           to={`/jobs/${jobId}`}
@@ -18,7 +18,7 @@ export default function CandidateKanbanPage() {
         </Link>
       </div>
 
-      {/* Kanban Board */}
+
 
       
       <CandidateKanban jobId={Number(jobId)} />

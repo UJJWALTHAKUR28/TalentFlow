@@ -78,7 +78,7 @@ export default function AssessmentResponsesList() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Hero Section */}
+   
       <div className="bg-[#00241B]/80 rounded-xl shadow-lg p-8 mb-8">
         <h1 className="text-4xl font-bold text-[#B5FFE1] mb-2 text-center">Assessment Responses</h1>
         <p className="text-xl text-[#93E5AB] text-center">
@@ -86,10 +86,10 @@ export default function AssessmentResponsesList() {
         </p>
       </div>
 
-      {/* Job & Assessment Selection */}
+      
       <div className="bg-[#4E878C] rounded-xl shadow-lg p-6 mb-8 border border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Job Selection */}
+        
           <div>
             <label className="font-semibold mb-2 block text-white items-center text-center text-xl ">Select Job</label>
             <select
@@ -103,7 +103,7 @@ export default function AssessmentResponsesList() {
             </select>
           </div>
 
-          {/* Assessment Selection */}
+          
           {assessments.length > 0 && (
             <div>
               <label className="font-semibold mb-2 block text-xl text-white">Select Assessment</label>
@@ -121,7 +121,7 @@ export default function AssessmentResponsesList() {
         </div>
       </div>
 
-      {/* Responses List */}
+   
       {responses.length > 0 && (
         <div>
           <h2 className="text-2xl font-bold mb-4">{jobTitle} → {assessmentTitle}</h2>

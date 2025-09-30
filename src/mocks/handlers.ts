@@ -29,7 +29,7 @@ function saveResponses(responses: Record<string, any[]>) {
   localStorage.setItem(RESPONSE_STORAGE_KEY, JSON.stringify(responses));
 }
 
-// Store responses by key = `${jobId}-${assessmentId}`
+
 const localAssessmentResponses: Record<string, any[]> = loadResponses();
 
 export const handlers = [
@@ -51,7 +51,7 @@ export const handlers = [
 
       let jobs = await db.jobs.toArray();
 
-      // Filtering
+
       if (search) {
         jobs = jobs.filter(j => j.title.toLowerCase().includes(search));
       }
@@ -65,7 +65,7 @@ export const handlers = [
         });
       }
 
-      // Sorting
+
       const sortFields: Record<string, (a: Job, b: Job) => number> = {
         title: (a: Job, b: Job) => a.title.localeCompare(b.title),
         status: (a: Job, b: Job) => a.status.localeCompare(b.status),
@@ -75,7 +75,7 @@ export const handlers = [
 
       jobs.sort(sortFields[sort] || sortFields.order);
 
-      // Pagination
+
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
       const paginated = jobs.slice(start, end);
@@ -134,14 +134,14 @@ export const handlers = [
 http.patch('/api/jobs/:id/reorder', async ({ request, params }) => {
   const { fromOrder, toOrder } = (await request.json()) as { fromOrder: number; toOrder: number };
 
-  // Fetch all jobs ordered by "order"
+
   const jobs = await db.jobs.orderBy('order').toArray();
 
   if (jobs.length === 0) {
     return new HttpResponse('No jobs found', { status: 404 });
   }
 
-  // Reassign orders sequentially (auto-repair)
+
   await db.transaction('rw', db.jobs, async () => {
     for (let i = 0; i < jobs.length; i++) {
       if (jobs[i].order !== i + 1) {
@@ -150,7 +150,7 @@ http.patch('/api/jobs/:id/reorder', async ({ request, params }) => {
     }
   });
 
-  // Refetch jobs after repair
+  
   const repairedJobs = await db.jobs.orderBy('order').toArray();
 
   const moving = repairedJobs.find(job => job.order === fromOrder);
@@ -165,7 +165,7 @@ http.patch('/api/jobs/:id/reorder', async ({ request, params }) => {
 
   await db.transaction('rw', db.jobs, async () => {
     if (fromOrder < toOrder) {
-      // Shift jobs UP (moving downwards)
+
       await db.jobs
         .where('order')
         .between(fromOrder + 1, toOrder, true, true)
@@ -173,7 +173,7 @@ http.patch('/api/jobs/:id/reorder', async ({ request, params }) => {
           job.order--;
         });
     } else if (fromOrder > toOrder) {
-      // Shift jobs DOWN (moving upwards)
+    
       await db.jobs
         .where('order')
         .between(toOrder, fromOrder - 1, true, true)
@@ -182,7 +182,7 @@ http.patch('/api/jobs/:id/reorder', async ({ request, params }) => {
         });
     }
 
-    // Place moving job in the target order
+
     await db.jobs.update(moving.id!, { order: toOrder });
   });
 
@@ -205,7 +205,7 @@ http.patch('/api/jobs/reorder/smooth', async ({ request }) => {
   return HttpResponse.json({ success: true }, { status: 200 });
 }),
 
-  // ------------------- CANDIDATE HANDLERS -------------------
+ 
   http.get('/api/candidates', async ({ request }) => {
     const url = new URL(request.url);
     const search = url.searchParams.get('search') || '';
@@ -248,7 +248,7 @@ http.patch('/api/jobs/reorder/smooth', async ({ request }) => {
     return new HttpResponse('Name, Email, and JobId are required', { status: 400 });
   }
 
-  // Check if candidate already exists for this jobId + email
+
   const existing = await candidatesDb.candidates
     .where({ jobId: body.jobId, email: body.email })
     .first();
@@ -256,7 +256,7 @@ http.patch('/api/jobs/reorder/smooth', async ({ request }) => {
   if (existing) {
     return new HttpResponse(
       `Candidate with email ${body.email} already applied to this job`,
-      { status: 409 } // Conflict
+      { status: 409 } 
     );
   }
 
@@ -306,7 +306,7 @@ http.patch('/api/jobs/reorder/smooth', async ({ request }) => {
     return HttpResponse.json(candidate.timeline || [], { status: 200 });
   }),
 
-  // ------------------- ASSESSMENT HANDLERS -------------------
+  
   http.get('/api/assessments/:jobId', async ({ params }) => {
     const jobId = Number(params.jobId);
     const assessments = await assessmentsDb.assessments.where('jobId').equals(jobId).toArray();

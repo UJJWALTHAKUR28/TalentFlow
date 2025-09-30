@@ -129,7 +129,7 @@ export default function JobDetailPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="p-6">
         <div className="max-w-7xl mx-auto">
-          {/* Navigation Header */}
+   
           <div className="mb-8 flex justify-between items-center">
             <Link
               to="/jobs"
@@ -138,7 +138,7 @@ export default function JobDetailPage() {
               ← Back to Jobs
             </Link>
 
-            {/* Edit / Reorder Buttons */}
+       
             <div className="space-x-3">
               <button
                 onClick={() => {
@@ -161,7 +161,7 @@ export default function JobDetailPage() {
             </div>
           </div>
 
-          {/* Hero Section */}
+     
           <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden mb-8">
             <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-8 py-12">
               <div className="flex items-start justify-between">
@@ -238,7 +238,7 @@ export default function JobDetailPage() {
             </div>
           </div>
 
-          {/* Reorder Section */}
+       
           {reorderMode && (
             <div className="bg-white p-6 rounded-lg shadow mb-8">
               <h2 className="font-bold text-xl mb-4">Reorder Job</h2>
@@ -264,7 +264,7 @@ export default function JobDetailPage() {
             </div>
           )}
 
-          {/* Tab Navigation */}
+     
           <div className="flex space-x-2 mb-8">
             {[
               { id: "overview", label: "Overview", icon: "📊" },
@@ -286,7 +286,7 @@ export default function JobDetailPage() {
             ))}
           </div>
 
-          {/* Tab Content */}
+  
           {activeTab === "overview" && (
             <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

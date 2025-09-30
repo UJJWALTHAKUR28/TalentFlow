@@ -42,14 +42,14 @@ const TAGS_POOL = [
 ];
 
 function randomTags(): string[] {
-  const count = Math.floor(Math.random() * 3) + 1; // 1 to 3 tags
+  const count = Math.floor(Math.random() * 3) + 1; 
   const shuffled = TAGS_POOL.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
 
 function generateUniqueSlug(title: string, index: number): string {
   const cleanTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  const randomSuffix = uuidv4().slice(0, 6); // unique suffix
+  const randomSuffix = uuidv4().slice(0, 6); 
   return `${cleanTitle}-${index + 1}-${randomSuffix}`;
 }
 
@@ -60,7 +60,7 @@ export async function seedJobs() {
   const sampleJobs: Job[] = JOB_TITLES.map((title, i) => ({
     title,
     slug: generateUniqueSlug(title, i),
-    status: Math.random() > 0.2 ? 'active' : 'archived', // 80% active
+    status: Math.random() > 0.2 ? 'active' : 'archived', 
     tags: randomTags(),
     order: i + 1
   }));

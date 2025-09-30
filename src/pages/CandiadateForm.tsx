@@ -27,11 +27,11 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
   const [experienceYears, setExperienceYears] = useState(0);
   const [skills, setSkills] = useState<string>("");
 
-  // Error handling state
+
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  // fetch jobs for dropdown
+
   useEffect(() => {
     fetch("/api/jobs?page=1&pageSize=100")
       .then((res) => res.json())
@@ -94,7 +94,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-          {/* Header */}
+
           <div className="bg-[#4E878C] px-8 py-6 text-center">
         <h2 className="text-3xl font-bold text-white flex justify-center items-center gap-3">
           <User className="w-8 h-8" />
@@ -104,7 +104,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
       </div>
 
           <div className="p-8">
-            {/* Error Message */}
+        
             {errorMessage && (
               <div className="mb-6 bg-red-50 border-l-4 border-red-500 rounded-lg p-4 flex items-start gap-3 animate-pulse">
                 <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
@@ -115,7 +115,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
               </div>
             )}
 
-            {/* Success Message */}
+          
             {successMessage && (
               <div className="mb-6 bg-green-50 border-l-4 border-green-500 rounded-lg p-4 flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -127,7 +127,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
             )}
 
             <form onSubmit={saveCandidate} className="space-y-6">
-              {/* Job Selection */}
+             
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
                   <Briefcase className="w-4 h-4 text-blue-600" />
@@ -148,7 +148,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
                 </select>
               </div>
 
-              {/* Personal Information Section */}
+          
               <div className="border-t border-slate-200 pt-6">
                 <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                   <User className="w-5 h-5 text-blue-600" />
@@ -213,7 +213,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
                 </div>
               </div>
 
-              {/* Professional Links Section */}
+         
               <div className="border-t border-slate-200 pt-6">
                 <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-blue-600" />
@@ -266,7 +266,7 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
                 </div>
               </div>
 
-              {/* Application Details Section */}
+    
               <div className="border-t border-slate-200 pt-6">
                 <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-blue-600" />
@@ -336,7 +336,6 @@ const CandidateForm: React.FC<{ onSaved?: () => void; onClose?: () => void }> = 
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex gap-4 pt-6 border-t border-slate-200">
                 <button
                   type="submit"

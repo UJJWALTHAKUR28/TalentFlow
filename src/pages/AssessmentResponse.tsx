@@ -54,13 +54,13 @@ export default function AssessmentResponse() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-7">
-      {/* Assessment Header */}
+
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8">
         <h1 className="text-3xl font-bold mb-2">{assessment.title}</h1>
         <p className="text-gray-700">{assessment.description}</p>
       </div>
 
-      {/* Candidate Selector */}
+
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6 mb-8">
         <label className="font-semibold block mb-2">Select Candidate:</label>
         <select
@@ -75,13 +75,13 @@ export default function AssessmentResponse() {
         </select>
       </div>
 
-      {/* Sections & Questions */}
+ 
       {selectedCandidateId && assessment.sections?.map((section: any, sectionIndex: number) => (
         <div key={sectionIndex} className="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6 mb-8">
           <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
 
           {section.questions.map((question: any) => {
-            // Conditional Logic
+
             if (question.conditional) {
               const dependentAnswer = answers[question.conditional.questionId];
               if (dependentAnswer !== question.conditional.value) return null;
@@ -91,7 +91,7 @@ export default function AssessmentResponse() {
               <div key={question.id} className="mb-6">
                 <label className="block font-semibold mb-2">{question.text} {question.required && "*"}</label>
 
-                {/* Single Choice */}
+ 
                 {question.type === "single-choice" && question.options?.map((option: string) => (
                   <label key={option} className="block mb-1">
                     <input
@@ -148,7 +148,7 @@ export default function AssessmentResponse() {
                   />
                 )}
 
-                {/* Numeric */}
+        
                 {question.type === "numeric" && (
                   <input
                     type="number"
@@ -160,7 +160,7 @@ export default function AssessmentResponse() {
                   />
                 )}
 
-                {/* File Upload */}
+      
                 {question.type === "file-upload" && (
                   <input
                     type="file"
@@ -174,7 +174,7 @@ export default function AssessmentResponse() {
         </div>
       ))}
 
-      {/* Submit Button */}
+ 
       {selectedCandidateId && (
         <div className="max-w-4xl mx-auto flex justify-center mb-8">
           <button

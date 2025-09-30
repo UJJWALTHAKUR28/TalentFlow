@@ -78,7 +78,7 @@ export default function Dashboard() {
     fetchTotals();
   }, []);
 
-  // Color mapping for different stages
+  
   const getBarColor = (stage: string) => { 
     const lowerStage = stage.toLowerCase(); 
     if (lowerStage.includes('reject')) return '#ef4444'; 
@@ -90,7 +90,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-white p-6 md:p-8">
-      {/* Hero Section */}
+     
       <div className="max-w-7xl mx-auto mb-8">
         <div className="bg-[#00241B] rounded-xl shadow-sm px-8 py-12 text-center border border-[#93E5AB]/20">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
@@ -102,7 +102,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Info Cards */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-[#93E5AB]/10 rounded-xl p-6 border border-[#93E5AB]/30">
@@ -120,7 +119,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats Cards */}
+   
       <div className="max-w-7xl mx-auto mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {loading ? (
@@ -156,7 +155,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Chart Section */}
+  
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
           <div className="mb-6">

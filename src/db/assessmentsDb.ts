@@ -18,7 +18,7 @@ export interface Assessment {
   description?: string;
   sections: { title: string; questions: Question[] }[];
   dueDate?: string;
-  timeLimit?: number; // minutes
+  timeLimit?: number; 
   passingScore?: number;
   isActive: boolean;
   createdAt: string;
@@ -29,16 +29,16 @@ export interface AssessmentResponse {
   id?: number;
   jobId: number;
   candidateId: number;
-  assessmentId: number; // ADDED: Direct reference to assessment
-  answers: Record<string, any>; // key = questionId
+  assessmentId: number; 
+  answers: Record<string, any>; 
   submittedAt: string;
   startedAt?: string;
   score?: number;
   status: 'in_progress' | 'completed' | 'abandoned';
-  timeSpent?: number; // minutes
+  timeSpent?: number; 
 }
 
-// NEW: Track assessment assignments
+
 export interface AssessmentAssignment {
   id?: number;
   jobId: number;
@@ -53,14 +53,14 @@ export interface AssessmentAssignment {
 export class AssessmentsDB extends Dexie {
   assessments!: Table<Assessment, number>;
   responses!: Table<AssessmentResponse, number>;
-  assignments!: Table<AssessmentAssignment, number>; // NEW TABLE
+  assignments!: Table<AssessmentAssignment, number>; 
 
   constructor() {
     super("AssessmentsDB");
     this.version(2).stores({
       assessments: "++id,jobId,title,isActive",
       responses: "++id,jobId,candidateId,assessmentId,[jobId+candidateId],[assessmentId+candidateId]",
-      assignments: "++id,jobId,candidateId,assessmentId,[jobId+candidateId],status" // NEW
+      assignments: "++id,jobId,candidateId,assessmentId,[jobId+candidateId],status" 
     });
   }
 }

@@ -21,10 +21,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Home page - no sidebar */}
+     
         <Route path="/" element={<LandingPage />} />
 
-        {/* All other routes - use Layout with sidebar + footer */}
+        
         <Route element={<Layout />}>
           <Route path="/jobs" element={<JobListPage />} />
           <Route path="/jobs/:jobId" element={<JobDetailPage />} />

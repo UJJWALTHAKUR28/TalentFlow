@@ -15,7 +15,7 @@ export default function AssessmentDetailsingle() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+
       <section className="bg-[rgba(0,36,27,0.8)] text-white py-16 px-6 md:px-20 flex flex-col items-center justify-center text-center rounded-xl mb-4">
         <h1 className="text-3xl md:text-5xl font-bold mb-4">
           Welcome to Your Assessment
@@ -25,7 +25,7 @@ export default function AssessmentDetailsingle() {
         </p>
       </section>
 
-      {/* Assessment Details */}
+ 
       <section className="bg-white text-black py-12 px-6 md:px-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">{assessment?.title || "Loading..."}</h2>
@@ -33,7 +33,7 @@ export default function AssessmentDetailsingle() {
             {assessment?.description || "Fetching assessment details..."}
           </p>
 
-          {/* Start Assessment Button */}
+    
           <div className="flex justify-center">
             <button
               onClick={() => navigate(`/assessments/${jobId}/${assessmentId}/response`)}
@@ -45,7 +45,7 @@ export default function AssessmentDetailsingle() {
         </div>
       </section>
 
-      {/* Footer / Extra Section */}
+   
       <section className="py-8 px-6 md:px-20 text-center">
         <p className="text-gray-600 text-sm md:text-base">
           Ensure your internet connection is stable before starting. Good luck!

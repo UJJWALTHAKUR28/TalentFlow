@@ -21,7 +21,7 @@ export default function JobAssessmentSelect() {
   const [jobSearchTerm, setJobSearchTerm] = useState("");
   const [assessmentSearchTerm, setAssessmentSearchTerm] = useState("");
 
-  // Your existing logic unchanged
+  
   useEffect(() => {
     fetch("/api/jobs?page=1&pageSize=100")
       .then(res => res.json())
@@ -44,7 +44,7 @@ export default function JobAssessmentSelect() {
     }
   };
 
-  // Filter functions for search
+
   const filteredJobs = jobs.filter(job => 
     job.title.toLowerCase().includes(jobSearchTerm.toLowerCase())
   );
@@ -58,7 +58,7 @@ export default function JobAssessmentSelect() {
 
   return (
     <div className="min-h-full bg-gray-50">
-      {/* Hero Section */}
+      
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-5 py-7">
           <div className="text-center">
@@ -77,18 +77,17 @@ export default function JobAssessmentSelect() {
         </div>
       </div>
 
-      {/* Main Content */}
+      
       <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="space-y-8">
           
-          {/* Job Selection Card - FIRST */}
+          
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center mb-5">
               <Briefcase className="w-5 h-5 text-blue-600 mr-2" />
               <h2 className="text-xl font-semibold text-gray-900">1. Select Job Position</h2>
             </div>
-            
-            {/* Job Search Bar */}
+           
             <div className="relative mb-4">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
@@ -100,13 +99,13 @@ export default function JobAssessmentSelect() {
               />
             </div>
 
-            {/* Job Dropdown */}
+         
             <div className="relative">
               <select 
                 onChange={e => {
                   setSelectedJobId(Number(e.target.value));
-                  setSelectedAssessmentId(null); // Reset assessment selection
-                  setAssessmentSearchTerm(""); // Clear assessment search
+                  setSelectedAssessmentId(null); 
+                  setAssessmentSearchTerm(""); 
                 }}
                 value={selectedJobId || ""}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white text-gray-900 font-medium"
@@ -127,7 +126,7 @@ export default function JobAssessmentSelect() {
             )}
           </div>
 
-          {/* Assessment Selection Card - SECOND */}
+        
           <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-6 transition-all ${
             !selectedJobId ? 'opacity-50 pointer-events-none' : 'opacity-100'
           }`}>
@@ -150,7 +149,7 @@ export default function JobAssessmentSelect() {
               </div>
             ) : (
               <>
-                {/* Assessment Search Bar */}
+               
                 <div className="relative mb-4">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <input
@@ -162,7 +161,7 @@ export default function JobAssessmentSelect() {
                   />
                 </div>
 
-                {/* Assessment Dropdown */}
+              
                 <div className="relative">
                   <select 
                     onChange={e => setSelectedAssessmentId(Number(e.target.value))}
@@ -188,7 +187,6 @@ export default function JobAssessmentSelect() {
           </div>
         </div>
 
-        {/* Action Button */}
         {selectedJobId && selectedAssessmentId && (
           <div className="mt-8 text-center">
             <button
@@ -201,7 +199,7 @@ export default function JobAssessmentSelect() {
           </div>
         )}
 
-        {/* Progress Indicator */}
+  
         <div className="mt-12 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Progress</h3>
           <div className="flex items-center justify-between">

@@ -11,7 +11,7 @@ export interface AssessmentStatus {
   lastUpdated: string;
   attempts: number;
   errorMessage?: string;
-  timeSpent?: number; // in minutes
+  timeSpent?: number; 
   isLocked?: boolean;
 }
 
