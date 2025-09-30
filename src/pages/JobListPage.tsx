@@ -33,30 +33,56 @@ export default function JobListPage() {
     loadJobs();
 }, []);
 
-  const loadJobs = async () => {
-    try {
-      const params = new URLSearchParams();
-      params.append('page', page.toString());
-      params.append('pageSize', '5');
-      if (search) params.append('search', search);
-      if (statusFilter) params.append('status', statusFilter);
-      if (tagsFilter) params.append('tags', tagsFilter);
-      if (sortField) params.append('sort', sortField);
+  // helper: safe JSON parser
+async function safeJson(res: Response) {
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    console.error("Non-JSON response (first 200 chars):", text.slice(0, 200));
+    return null;
+  }
+}
 
-      const pageRes = await fetch(`/api/jobs?${params.toString()}`);
-      const pageData = await pageRes.json();
+const loadJobs = async () => {
+  try {
+    const params = new URLSearchParams();
+    params.append("page", page.toString());
+    params.append("pageSize", "5");
+    if (search) params.append("search", search);
+    if (statusFilter) params.append("status", statusFilter);
+    if (tagsFilter) params.append("tags", tagsFilter);
+    if (sortField) params.append("sort", sortField);
+
+    // first request
+    const pageRes = await fetch(`/api/jobs?${params.toString()}`);
+    const pageData = await safeJson(pageRes);
+
+    if (pageData && pageData.data) {
       setJobs(pageData.data);
       setTotalPages(Math.ceil(pageData.total / 5));
-
-      const allRes = await fetch(`/api/jobs?page=1&pageSize=1000&sort=${sortField}`);
-      const allData = await allRes.json();
-      setAllJobs(allData.data);
-    } catch (error) {
-      console.error('Failed to load jobs:', error);
-      setJobs([]);  
-        setAllJobs([]);
+    } else {
+      setJobs([]);
+      setTotalPages(1);
     }
-  };
+
+    // second request (all jobs)
+    const allRes = await fetch(`/api/jobs?page=1&pageSize=1000&sort=${sortField}`);
+    const allData = await safeJson(allRes);
+
+    if (allData && allData.data) {
+      setAllJobs(allData.data);
+    } else {
+      setAllJobs([]);
+    }
+  } catch (error) {
+    console.error("Failed to load jobs:", error);
+    setJobs([]);
+    setAllJobs([]);
+    setTotalPages(1);
+  }
+};
+
 
   useEffect(() => {
     loadJobs();
