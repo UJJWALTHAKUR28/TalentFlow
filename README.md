@@ -83,7 +83,8 @@ npm run build
 # Preview production build
 npm run preview
 ```
-
+## Note: 
+If site shows no data just refresh the site
 ### Environment Setup
 The application runs entirely in the browser with no backend dependencies. MSW intercepts network requests and serves data from IndexedDB.
 
