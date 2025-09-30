@@ -34,7 +34,10 @@ export default function JobAssessmentSelect() {
       fetch(`/api/assessments/${selectedJobId}`)
         .then(res => res.json())
         .then(data => setAssessments(data))
-        .catch(err => console.error(err));
+        .catch(err => {
+      console.error("Failed to load jobs:", err);
+      alert(`Reload Page`);
+        });
     }
   }, [selectedJobId]);
 
